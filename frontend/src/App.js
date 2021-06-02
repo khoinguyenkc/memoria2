@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './css/bootstrap.css'
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-import Home from './components/Home';
+import MainContent from './components/MainContent';
 import Navbar from './components/Navbar';
 import Today from './components/Today';
 import Past from './components/Past';
@@ -16,7 +16,7 @@ class App extends Component {
       <Router>
         <Navbar/>
         
-        <Route path="/" component={Home} ></Route>
+        <Route path="/" component={MainContent} ></Route>
         {/* <Route path="/home" component={Home} ></Route> */}
         <Route path="/testcomponent" component={TestComponent} ></Route>
 

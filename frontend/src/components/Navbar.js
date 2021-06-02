@@ -33,8 +33,11 @@ class Navbar extends Component {
             Settings
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
+          <li><a class="dropdown-item" href="/signup">Signup</a></li>
+            <li><a class="dropdown-item" href="/login">Login</a></li>
+            <li><a class="dropdown-item" href="/reset">Reset password</a></li>
+            <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
+
             <li><hr class="dropdown-divider"></hr></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
@@ -47,9 +50,9 @@ class Navbar extends Component {
   </div>
 </nav>
 
-            <a href="/" type="button" class="btn btn-primary">Home</a>
+            {/* <a href="/" type="button" class="btn btn-primary">Home</a>
 
-            <a href="/settings">Settings</a>
+            <a href="/settings">Settings</a> */}
 
             {/* <Route exact path="/" component={} ></Route>
             <Route path="/past" component={} ></Route> */}
