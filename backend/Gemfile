@@ -7,6 +7,8 @@ ruby '2.6.1'
 #my adds:
 gem 'bcrypt'
 gem 'pry'
+gem 'devise'
+gem 'jwt'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.5'
