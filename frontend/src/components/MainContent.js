@@ -73,7 +73,9 @@ class MainContent extends Component {
 
                     <Router>
                         {/* later i want exact path / to load conditionally: today newsfeed or login, depends on login status  */}
-                        <Route exact path="/" component={Today} ></Route>
+                        <Route exact path="/" 
+                        render={() => Userfront.accessToken()?  <Today /> : <LoginForm />}
+                        ></Route>
                         <Route path="/past" component={Past} ></Route>
                         <Route path="/signup">
                             <SignupForm />
