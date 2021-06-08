@@ -1,8 +1,14 @@
 class AuthenticationController < ApplicationController
-    def authenticate_user
+  protect_from_forgery with: :null_session
+  
+  def authenticate_user
       user = User.find_for_database_authentication(email: params[:email])
-      if user.valid_password?(params[:password])
+      if user 
+        if user.valid_password?(params[:password]) #add the if user part otherwise nfound user causes errors
         render json: payload(user)
+        else
+          render json: {errors: ['Invalid Username/Password']}, status: :unauthorized
+        end
       else
         render json: {errors: ['Invalid Username/Password']}, status: :unauthorized
       end
