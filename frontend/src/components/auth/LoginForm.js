@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 
-export default class Today extends React.Component {
+export default class LoginForm extends React.Component {
     constructor() {
         super()
         this.state = {
@@ -11,37 +11,19 @@ export default class Today extends React.Component {
       }
     
     
-    handleEmailChange = event => {
+    handleChange = event => {
         this.setState({
-            email: event.target.value
+            [event.target.name]: event.target.value
           })
     }
 
-    handlePasswordChange = event => {
-        this.setState({
-            password: event.target.value
-          })
-    }
 
     handleSubmit = event => {
-        const formData = {email: this.state.email, password: this.state.password}
-
-        const configObject = {  
-	
-            method: "POST",  
-        
-            headers: {    
-                "Content-Type": "application/json",    
-                "Accept": "application/json"  },  
-        
-            body: JSON.stringify(formData)/* Your data goes here */
-        
-        }
-
-        fetch("http://localhost:3000/api/auth_user", configObject).
-        then(function(response) {  console.log(response);return response.json();}).
-        then(function(json) {  console.log(json);});
+      event.preventDefault();
         //later need to setup to store token somewhere (redux central state probably)
+        //might even send up a parent component that handles this step
+        this.props.handleLogin(this.state) //handleLogin is passed down from parent component
+
     }
 
 
@@ -57,7 +39,7 @@ export default class Today extends React.Component {
         id="email"
         type="email"
         value={this.state.email}
-        onChange={this.handleEmailChange}
+        onChange={this.handleChange}
       />
       <br /><br />
       <label htmlFor="password">Password:</label>
@@ -67,7 +49,7 @@ export default class Today extends React.Component {
         id="password"
         type="password"
         value={this.state.password}
-        onChange={this.handlePasswordChange}
+        onChange={this.handleChange}
 
 
         ></input>
