@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import LoginForm from './LoginForm'
 
-export default class Login extends React.Component {
+export default class Login extends Component {
+    constructor(props) {
+        super(props)
+    }
 
     handleLogin = (data) => {
         const formData = {email: data.email, password: data.password}
@@ -19,7 +22,7 @@ export default class Login extends React.Component {
         }
 
         fetch("http://localhost:3000/api/auth_user", configObject).
-        then(function(response) {  console.log(response);return response.json();}).
+        then(function(response) {  return response.json();}).
         then(function(json) {  
           console.log(json)
           //need to save it to redux central state
@@ -27,13 +30,21 @@ export default class Login extends React.Component {
 
     }
 
+    testmethod = () => {
+        console.log('testing with test method in Login component')
+    }
+
+
+
 
     render() {
         return (
           <div>
     
-            <LoginForm handleLogin={this.login} />
+            <LoginForm login={this.handleLogin} />
+
         </div>
+        )
     }
 
 

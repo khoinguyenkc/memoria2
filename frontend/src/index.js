@@ -6,14 +6,16 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import rootReducer from './reducers';
+import rootReducer from './reducers/rootReducer';
+import bootstrap from 'bootstrap';
 
-const store = createStore(rootReducer, applyMiddleware(thunk))
 
 // import '@popperjs/core';
 // import './bootstrapjs/bootstrap.bundle.js';
-import bootstrap from 'bootstrap';
 // import './bootstrapjs/popper.min.js'
+
+
+const store = createStore(rootReducer, applyMiddleware(thunk))
 
 ReactDOM.render(
   <React.StrictMode>

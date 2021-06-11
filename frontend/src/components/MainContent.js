@@ -3,7 +3,8 @@ import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
 import Today from './Today';
 import Past from './Past';
 import Userfront from "@userfront/react";
-import LoginForm from './auth/LoginForm';
+import Login from './auth/Login';
+
 // ---------------------------------------------------------------------------------
 // ------------USERFRONT STUFF HERE. ACTUAL maincontent COMPONENT BELOW-------------
 // ---------------------------------------------------------------------------------
@@ -74,7 +75,9 @@ class MainContent extends Component {
                     <Router>
                         {/* later i want exact path / to load conditionally: today newsfeed or login, depends on login status  */}
                         <Route exact path="/" 
-                        render={() => Userfront.accessToken()?  <Today /> : <LoginForm />}
+                        render={() =>   <Today />}
+
+                        // render={() => Userfront.accessToken()?  <Today /> : <LoginForm />}
                         ></Route>
                         <Route path="/past" component={Past} ></Route>
                         {/* <Route path="/signup">
@@ -82,7 +85,7 @@ class MainContent extends Component {
                         </Route> */}
 
                         <Route path="/login">
-                            <LoginForm />
+                            <Login />
                         </Route>
                         {/* <Route path="/reset">
                             <PasswordResetForm />
