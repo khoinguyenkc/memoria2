@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-    # before_action :authenticate_request!  
+    before_action :authenticate_request!  
 
     def show
         #find post id, check that it belongs to current user

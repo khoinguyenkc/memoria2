@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import NewsFeed from './NewsFeed';
 import TodayPastSwitcher from './TodayPastSwitcher'
+import { connect } from 'react-redux';
 
 class Today extends Component {
   constructor(props) {
@@ -9,7 +10,16 @@ class Today extends Component {
   }
 
   getPosts = () =>  {
-    fetch("http://localhost:3000/api/posts").
+    //eventually, make sure it only get recent posts of user, not all posts
+    const configObject = { 
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${this.state.userToken}`,
+        }
+      }
+
+    fetch("http://localhost:3000/api/posts", configObject).
     then( res => res.json()).
     then( json => this.setState({postsReceived: JSON.stringify(json)}))
   }
@@ -21,11 +31,11 @@ class Today extends Component {
             <TodayPastSwitcher/>
             <h1>Today - NewsFeed feature</h1>
             <div>
-              <button
-                onClick={this.getPosts}
-              >
+              <button onClick={this.getPosts}>
                 Get posts
               </button>
+              <p>current user token: {this.state.userToken}</p>
+              <p>Posts received: {this.state.postsReceived}</p>
               <p>{this.state.postsReceived}</p>
             </div>
 
@@ -36,4 +46,11 @@ class Today extends Component {
   }
 };
 
-export default Today;
+
+const mapStateToProps = (state) => {
+  return { userToken: state.userToken.token }
+  
+};
+
+
+export default connect(mapStateToProps)(Today);
