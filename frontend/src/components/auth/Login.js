@@ -7,35 +7,35 @@ import { addToken } from '../../actions/tokens';
  class Login extends Component {
     constructor() {
         super()
-        this.state={ }
+        this.state={ clq: 'gizay' }
         //if u use mapstatetoprops, and u use constructor, apparently u need to initate the state object. otherwise error
     }
 
     handleLogin = (data) => {
         //call up dispatch and action creator to end data
-        // const formData = {email: data.email, password: data.password}
+        const formData = {email: data.email, password: data.password}
 
-        // const configObject = {  
+        const configObject = {  
     
-        //     method: "POST",  
+            method: "POST",  
         
-        //     headers: {    
-        //         "Content-Type": "application/json",    
-        //         "Accept": "application/json"  },  
+            headers: {    
+                "Content-Type": "application/json",    
+                "Accept": "application/json"  },  
         
-        //     body: JSON.stringify(formData)/* Your data goes here */
+            body: JSON.stringify(formData)/* Your data goes here */
         
-        // }
+        }
 
-        // fetch("http://localhost:3000/api/auth_user", configObject).
-        // then(function(response) {  return response.json();}).
-        // then(function(json) {  
-        //   console.log(json)
-    
-        // })
+        fetch("http://localhost:3000/api/auth_user", configObject).
+        then(function(response) {  return response.json();}).
+        then(function(json) {  
+            localStorage.setItem("userToken", json.auth_token)
+            console.log(localStorage.getItem("userToken"))
 
-        this.props.addToken(data)
+        })
 
+        // this.props.addToken(data)
     
     }
 
@@ -50,8 +50,7 @@ import { addToken } from '../../actions/tokens';
         return (
           <div>
             <h3>Login component</h3>
-            <p>current user token: {this.state.userToken}</p>
-            <p>test value: {this.state.test}</p>
+            <p>current user token: {localStorage.getItem("userToken")}</p>
 
             <LoginForm login={this.handleLogin} />
 
@@ -62,13 +61,11 @@ import { addToken } from '../../actions/tokens';
 
     
 }
-
-
 const mapStateToProps = (state) => {
-    return { userToken: state.userToken,
-    test: state.userToken.testValue }
-    
+    return { userToken: state.userToken };
   };
+  
+
 
   
 const mapDispatchToProps = (dispatch) => {

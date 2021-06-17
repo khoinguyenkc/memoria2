@@ -1,4 +1,4 @@
-export default function booksReducer(state = [], action) {
+export default function booksReducer(state = [ {title: "100 years of solitude"}], action) {
     let idx;
     switch (action.type) {
       case "ADD_BOOK":

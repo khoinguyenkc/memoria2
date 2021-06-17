@@ -11,3 +11,24 @@ import userTokenReducer from './userTokenReducer';
  
 
  export default rootReducer;
+
+
+// export default function rootReducer(state = { 
+//   restaurants: [{ name: "asdfsaf", age: 19}],
+//   artists: [ "beyonce", "shakira"]
+// } , action) {
+//   switch (action.type) {
+
+//     case 'ADD_RESTAURANT':
+//       return {
+//         ...state,
+//         restaurants: [...state.restaurants, action.restaurant]
+//       }
+
+//     default:
+//       return state;
+
+//   }
+// };
+
+

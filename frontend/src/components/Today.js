@@ -10,12 +10,13 @@ class Today extends Component {
   }
 
   getPosts = () =>  {
+    console.log(this.props.whatever)
     //eventually, make sure it only get recent posts of user, not all posts
     const configObject = { 
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${this.state.userToken}`,
+          Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         }
       }
 
@@ -34,8 +35,9 @@ class Today extends Component {
               <button onClick={this.getPosts}>
                 Get posts
               </button>
-              <p>current user token: {this.state.userToken}</p>
               <p>Posts received: {this.state.postsReceived}</p>
+
+              <p>current user token: {localStorage.getItem("userToken")}</p>
               <p>{this.state.postsReceived}</p>
             </div>
 
@@ -48,9 +50,10 @@ class Today extends Component {
 
 
 const mapStateToProps = (state) => {
-  return { userToken: state.userToken.token }
-  
-};
+
+  return { userToken : state.userToken.token }
+}
+
 
 
 export default connect(mapStateToProps)(Today);
