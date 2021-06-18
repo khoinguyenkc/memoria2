@@ -12,8 +12,8 @@ class Status extends Component {
         <h5 class="card-header">Featured</h5>
         <img class="card-img-top" src="https://images-na.ssl-images-amazon.com/images/I/51Bfy7Uy6HL._SX355_.jpg"></img>
         <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <h5 class="card-title">User id {this.props.post.user_id}</h5>
+            <p class="card-text">{this.props.post.content}</p>
             <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
         

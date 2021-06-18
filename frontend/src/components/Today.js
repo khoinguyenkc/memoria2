@@ -48,10 +48,9 @@ class Today extends Component {
               {/* <p>Posts received: {this.props.postsReceived}</p> */}
 
               <p>current user token: {localStorage.getItem("userToken")}</p>
-              <p>{this.state.postsReceived}</p>
             </div>
 
-            <NewsFeed />
+            <NewsFeed posts={this.props.postsReceived}/>
             {/* we're gonna pass data into newsfeed and let it do its thing. newsfeed is kinda of a container component*/}
         </div>
     )
@@ -61,7 +60,7 @@ class Today extends Component {
 
 const mapStateToProps = (state) => {
 
-  return { postsReceived : state.posts }
+  return { postsReceived : state.posts.posts }
 }
 
   

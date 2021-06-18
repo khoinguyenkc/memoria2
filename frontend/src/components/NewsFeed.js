@@ -3,10 +3,15 @@ import React, { Component } from 'react';
 import Status from './Status';
 
 class NewsFeed extends Component {
-
+  constructor(props) {
+    super(props)
+    console.log(this.props.posts)
+  }
 
     renderPosts = () => {
+      console.log(this.props.posts)
 
+      return this.props.posts.map( post => < Status post={post} />)
     };
 
     
@@ -14,8 +19,7 @@ class NewsFeed extends Component {
       return (
           <div>
               <h1>NewsFeed Component</h1>
-              <Status />
-              <Status />
+              {this.renderPosts()}
           </div>
       )
     }
