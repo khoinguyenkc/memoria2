@@ -12,7 +12,7 @@ class PostsController < ApplicationController
                 #questionL how to request recent vs all posts
         #find all posts belonging to current user, load them in time sequence 
 
-        @posts = Post.all
+        @posts = @current_user.posts
 
         render json: @posts
     

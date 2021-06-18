@@ -1,28 +1,38 @@
 import React, { Component } from 'react';
 import NewsFeed from './NewsFeed';
-import TodayPastSwitcher from './TodayPastSwitcher'
+import TodayPastSwitcher from './TodayPastSwitcher';
 import { connect } from 'react-redux';
+import { getPosts } from '../actions/posts';
 
+// import { addPost } from '../actions/posts'
 class Today extends Component {
   constructor(props) {
     super(props)
-    this.state = {postsReceived: ""}
+    this.state = {}
   }
 
   getPosts = () =>  {
-    console.log(this.props.whatever)
     //eventually, make sure it only get recent posts of user, not all posts
-    const configObject = { 
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("userToken")}`,
-        }
-      }
+    // const configObject = { 
+    //     method: "GET",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+    //     }
+    //   }
 
-    fetch("http://localhost:3000/api/posts", configObject).
-    then( res => res.json()).
-    then( json => this.setState({postsReceived: JSON.stringify(json)}))
+    // fetch("http://localhost:3000/api/posts", configObject).
+    // then( res => res.json()).
+    // then( json => {
+    //   //refactor this to store in redux instead 
+    //   console.log(JSON.stringify(json));
+    //   console.log(json)
+    //   // this.setState({postsReceived: JSON.stringify(json)})
+    // }
+    //   )
+    this.props.getPosts()
+
+
   }
 
 
@@ -35,7 +45,7 @@ class Today extends Component {
               <button onClick={this.getPosts}>
                 Get posts
               </button>
-              <p>Posts received: {this.state.postsReceived}</p>
+              {/* <p>Posts received: {this.props.postsReceived}</p> */}
 
               <p>current user token: {localStorage.getItem("userToken")}</p>
               <p>{this.state.postsReceived}</p>
@@ -51,9 +61,16 @@ class Today extends Component {
 
 const mapStateToProps = (state) => {
 
-  return { userToken : state.userToken.token }
+  return { postsReceived : state.posts }
 }
 
+  
+const mapDispatchToProps = (dispatch) => {
+  return { 
+    getPosts: () => dispatch(getPosts())  
+  }
+  
+};
 
 
-export default connect(mapStateToProps)(Today);
+export default connect(mapStateToProps, mapDispatchToProps)(Today);
