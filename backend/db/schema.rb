@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_03_220944) do
+ActiveRecord::Schema.define(version: 2021_06_18_202140) do
 
   create_table "activityposts", force: :cascade do |t|
     t.string "content"
@@ -26,6 +26,13 @@ ActiveRecord::Schema.define(version: 2021_06_03_220944) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_id"], name: "index_feelingposts_on_post_id"
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.integer "requester_id", null: false
+    t.integer "accepter_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "posts", force: :cascade do |t|
