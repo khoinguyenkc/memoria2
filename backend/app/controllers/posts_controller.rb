@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  protect_from_forgery with: :null_session
+
     before_action :authenticate_request!  
 
     def show
@@ -9,11 +11,12 @@ class PostsController < ApplicationController
       end
 
       def index
-                #questionL how to request recent vs all posts
-        #find all posts belonging to current user, load them in time sequence 
 
+        #this is the hub that deliver different kinds of content based on the specifcations in params
+        #ex: user's recent posts, user's post from march 2017, user's friend's recent posts, etc..
+        #make sure it checks friendship for security
+        
         @posts = @current_user.posts
-
         render json: @posts
     
     

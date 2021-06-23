@@ -1,9 +1,10 @@
-const getPosts = function(postObject) {
+const getPosts = function(specObject) {
 
     const configObject = { 
         method: "GET",
         headers: {
           "Content-Type": "application/json",
+          "timerange": "recent",
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         }
       }
@@ -25,17 +26,24 @@ const getPosts = function(postObject) {
     
         // })
 
-        fetch("http://localhost:3000/api/posts", configObject).
+
+        //later make sure the action creator can take parameters to specify time range
+        const timeRange = "recent";
+
+        fetch(`http://localhost:3000/api/posts?timerange=${timeRange}`, configObject).
         then( res => res.json()).
         then( json => {
             console.log(json)
-            //refactor this to store in redux instead 
-            //make sure u findout what is being returned
               //content of JSON.stringify(json) :
           //   [{"id":1,"content":"my first status. the weather is so nice today","user_id":1,"created_at":"2021-06-07T20:58:19.523Z","updated_at":"2021-06-07T20:58:19.523Z"}]
               //make sure u only use json, not json.stringify(json). loop through array
-          //   dispatch({type: 'ADD_POSTS', post: post })
+
+
           json.forEach( post => dispatch({type: 'ADD_POST', post: post }))
+
+
+
+
         //   json.forEach( post => console.log(post))
 
         }

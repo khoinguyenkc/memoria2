@@ -32,8 +32,7 @@ class User < ApplicationRecord
         friends.push(user)
       end
     end
-    
-    binding.pry
+
     return friends
   end
 
