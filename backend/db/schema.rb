@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_18_202140) do
+ActiveRecord::Schema.define(version: 2021_06_24_220202) do
 
   create_table "activityposts", force: :cascade do |t|
     t.string "content"
@@ -18,6 +18,21 @@ ActiveRecord::Schema.define(version: 2021_06_18_202140) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_id"], name: "index_activityposts_on_post_id"
+  end
+
+  create_table "families", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "familymemberships", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "family_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["family_id"], name: "index_familymemberships_on_family_id"
+    t.index ["user_id"], name: "index_familymemberships_on_user_id"
   end
 
   create_table "feelingposts", force: :cascade do |t|
@@ -60,6 +75,8 @@ ActiveRecord::Schema.define(version: 2021_06_18_202140) do
   end
 
   add_foreign_key "activityposts", "posts"
+  add_foreign_key "familymemberships", "families"
+  add_foreign_key "familymemberships", "users"
   add_foreign_key "feelingposts", "posts"
   add_foreign_key "posts", "users"
 end
