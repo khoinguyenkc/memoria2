@@ -30,7 +30,7 @@ class Today extends Component {
     //   // this.setState({postsReceived: JSON.stringify(json)})
     // }
     //   )
-    this.props.getPosts()
+    this.props.getPosts({type: "recent"})
 
 
   }
@@ -66,7 +66,7 @@ const mapStateToProps = (state) => {
   
 const mapDispatchToProps = (dispatch) => {
   return { 
-    getPosts: () => dispatch(getPosts())  
+    getPosts: (specObject) => dispatch(getPosts(specObject))  
   }
   
 };

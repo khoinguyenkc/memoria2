@@ -15,8 +15,10 @@ class PostsController < ApplicationController
         #this is the hub that deliver different kinds of content based on the specifcations in params
         #ex: user's recent posts, user's post from march 2017, user's friend's recent posts, etc..
         #make sure it checks friendship for security
-        
-        @posts = @current_user.posts
+        #params.timerange
+        #use Post model's custom methods to process the params request
+        # binding.pry
+        @posts = Post.process_request(@current_user, params) 
         render json: @posts
     
     

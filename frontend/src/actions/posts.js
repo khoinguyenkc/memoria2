@@ -28,9 +28,20 @@ const getPosts = function(specObject) {
 
 
         //later make sure the action creator can take parameters to specify time range
-        const timeRange = "recent";
+        let query;
+        const type = specObject.type;
 
-        fetch(`http://localhost:3000/api/posts?timerange=${timeRange}`, configObject).
+        if (type === "recent") {
+          query = `type=${type}`
+        } else if (type === "date") {
+          query = `type=${type}&day=${specObject.day}&month=${specObject.month}&year=${specObject.year}`
+        } else if (type === "month") {
+          query = `type=${type}&month=${specObject.month}&year=${specObject.year}`
+        } else if (type === "year") {
+          query = `type=${type}&year=${specObject.year}`
+        }
+
+        fetch(`http://localhost:3000/api/posts?${query}`, configObject).
         then( res => res.json()).
         then( json => {
             console.log(json)
