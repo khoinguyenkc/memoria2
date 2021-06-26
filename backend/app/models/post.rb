@@ -14,7 +14,6 @@ class Post < ApplicationRecord
 
       arr = familymember.recent_posts #instance method on User instance
       arr.each do | post | 
-        binding.pry
 
         recent_posts << post 
       end
@@ -31,10 +30,8 @@ class Post < ApplicationRecord
     #<ActionController::Parameters {"q"=>"recent", "controller"=>"posts", "action"=>"index", "post"=>{}} permitted: false>
     if params["type"] == "recent"
       posts = Post.recent_posts_of_family(user)
-      #first last order matter! earlier date before later date!!!
 
 
-      #NEED TO MAKE THIS FIND POSTS OF FAMILY!!!!!!!
 
     elsif params["type"] == "date"
       date = Date.new(params["year"], params["month"], params["date"])

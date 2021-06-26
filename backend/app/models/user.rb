@@ -18,6 +18,7 @@ class User < ApplicationRecord
     last = Date.parse(Time.current.to_s)
     first = Date.parse(60.days.ago.to_s)
     # posts = Post.where(created_at: first..last)
+    #first last order matter! earlier date before later date!!!
 
     posts = Post.where("created_at >= ? AND created_at <= ? AND user_id = ?", first, last, self.id)
     return posts

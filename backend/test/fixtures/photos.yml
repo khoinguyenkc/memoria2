@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  caption: MyString
+  url: MyString
+  order_in_album: 1
+  order_in_post: 1
+  references: 
+  references: 
+  references: 
+
+two:
+  caption: MyString
+  url: MyString
+  order_in_album: 1
+  order_in_post: 1
+  references: 
+  references: 
+  references: 
