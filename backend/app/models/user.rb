@@ -9,19 +9,30 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  def post_of_family
-    #later we'll create 2 methods,  recent posts vs posts by month/date..
-    # cycle thru friends list, grab all their recent posts, 
-    recent_posts = @current_user.family.each do | familymember | 
-      familymember.recent_posts
-    end
-    #then arrange this list by time
 
+  
+  #INSTANCE METHOD:
+  #grabs recent posts of the user
+  def recent_posts
 
+    last = Date.parse(Time.current.to_s)
+    first = Date.parse(60.days.ago.to_s)
+    # posts = Post.where(created_at: first..last)
+
+    posts = Post.where("created_at >= ? AND created_at <= ? AND user_id = ?", first, last, self.id)
+    return posts
   end
 
+
+    #INSTANCE METHOD:
+  #grabs posts of the user by date range
+  def archive_posts(specs)
+  end
+
+
+
   def family
-    familymembers = @current_user.families.first.users
+    familymembers = self.families.first.users
     #this include the user himself
 
 

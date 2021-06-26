@@ -1,13 +1,40 @@
 class Post < ApplicationRecord
   belongs_to :user
 
+  # scope :recent, -> { where( created_at: 60.days.ago.to_s .. Time.current.to_s)}
+
+
+  def self.recent_posts_of_family(curr_user)
+    #receive argument to be more Functional Programming
+
+    #later we'll create 2 methods,  recent posts vs posts by month/date..
+    # cycle thru friends list, grab all their recent posts, 
+    recent_posts = Array.new
+    curr_user.family.each do | familymember | 
+
+      arr = familymember.recent_posts #instance method on User instance
+      arr.each do | post | 
+        binding.pry
+
+        recent_posts << post 
+      end
+
+    end 
+
+    #then sort this list by time
+    return recent_posts
+
+  end
+
+
   def self.process_request(user, params)
     #<ActionController::Parameters {"q"=>"recent", "controller"=>"posts", "action"=>"index", "post"=>{}} permitted: false>
     if params["type"] == "recent"
-      last = Date.parse(Time.current.to_s)
-      first = Date.parse(60.days.ago.to_s)
-      posts = Post.where(created_at: first..last)
+      posts = Post.recent_posts_of_family(user)
       #first last order matter! earlier date before later date!!!
+
+
+      #NEED TO MAKE THIS FIND POSTS OF FAMILY!!!!!!!
 
     elsif params["type"] == "date"
       date = Date.new(params["year"], params["month"], params["date"])
