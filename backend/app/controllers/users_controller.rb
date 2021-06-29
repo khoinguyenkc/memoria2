@@ -5,6 +5,8 @@ class UsersController < ApplicationController
         @user = User.create(user_params)
         if @user.save
             session[:user_id] = @user.id
+            #do initialize work here: create Timeline Photos album,..... etc..
+            
             #send  some data down ...
         else
             #message that it failed?!

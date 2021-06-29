@@ -6,7 +6,7 @@ class CreatePictures < ActiveRecord::Migration[6.0]
       t.integer :order_in_album
       t.integer :order_in_post
       t.references :user, null: false, foreign_key: true
-      t.references :photo_album, null: false, foreign_key: true
+      t.references :picture_album, null: false, foreign_key: true
       t.references :post, null: false, foreign_key: true
 
       t.timestamps

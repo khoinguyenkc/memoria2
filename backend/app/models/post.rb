@@ -1,5 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :user
+  has_many :pictures
+  
 
   # scope :recent, -> { where( created_at: 60.days.ago.to_s .. Time.current.to_s)}
 

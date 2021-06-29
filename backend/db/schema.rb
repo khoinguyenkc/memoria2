@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_26_062216) do
+ActiveRecord::Schema.define(version: 2021_06_28_205606) do
 
   create_table "activityposts", force: :cascade do |t|
     t.string "content"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 2021_06_26_062216) do
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
     t.index ["user_id"], name: "index_picture_albums_on_user_id"
   end
 
@@ -64,11 +65,11 @@ ActiveRecord::Schema.define(version: 2021_06_26_062216) do
     t.integer "order_in_album"
     t.integer "order_in_post"
     t.integer "user_id", null: false
-    t.integer "photo_album_id", null: false
+    t.integer "picture_album_id", null: false
     t.integer "post_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["photo_album_id"], name: "index_pictures_on_photo_album_id"
+    t.index ["picture_album_id"], name: "index_pictures_on_picture_album_id"
     t.index ["post_id"], name: "index_pictures_on_post_id"
     t.index ["user_id"], name: "index_pictures_on_user_id"
   end
@@ -102,7 +103,7 @@ ActiveRecord::Schema.define(version: 2021_06_26_062216) do
   add_foreign_key "familymemberships", "users"
   add_foreign_key "feelingposts", "posts"
   add_foreign_key "picture_albums", "users"
-  add_foreign_key "pictures", "photo_albums"
+  add_foreign_key "pictures", "picture_albums"
   add_foreign_key "pictures", "posts"
   add_foreign_key "pictures", "users"
   add_foreign_key "posts", "users"
