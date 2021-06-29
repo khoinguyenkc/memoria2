@@ -4,9 +4,10 @@ class PostsController < ApplicationController
     before_action :authenticate_request!  
 
     def show
-        #find post id, check that it belongs to current user
-        
-        # render json: {#content}
+        #find post id, check that user has access to post
+        @post = Post.find(params[:id]) 
+        #should also load related content: feelingpost, photos, comments... serializer?!
+        render json: @post.to_json(:include => [ :pictures])
     
       end
 
@@ -17,10 +18,25 @@ class PostsController < ApplicationController
         #make sure it checks friendship for security
         #params.timerange
         #use Post model's custom methods to process the params request
-        # binding.pry
+        # SELECT POSTS
         @posts = Post.process_request(@current_user, params) 
-        render json: @posts
-    
+
+        #TRIM DOWN CONTENT
+        # data = []
+        # @posts.each do | post |
+        #   object = {
+        #     id: post.id
+        #   } 
+        # data << object 
+        # end
+
+        #SEND PACKAGE
+        render json:  @posts
+
+
+        #GOAL: have this deliver only metadata like id, individual posts will by the SHOW controller
+        #serializer is one way to achieve this
+
     
       end
 
