@@ -7,7 +7,7 @@ class PostsController < ApplicationController
         #find post id, check that user has access to post
         @post = Post.find(params[:id]) 
         #should also load related content: feelingpost, photos, comments... serializer?!
-        render json: @post.to_json(:include => [ :pictures])
+        render json: @post.to_json(:include => [ :pictures, :comments])
     
       end
 

@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updatePost } from '../actions/posts';
 import InstagramCarousel from './status/InstagramCarousel.js';
+import CommentContainer from './CommentContainer.js';
 
 class Status extends Component {
 
@@ -37,6 +38,11 @@ class Status extends Component {
     }
     
 
+  }
+
+  renderComments = () => {
+    // NEED TO CHECK COMMENTS IS NOW AVAILABLE, LIKE renderPictures, TO PREVENT ERROR
+    return ( <CommentContainer comments={this.props.post.comments} /> )
   }
 
   componentDidMount() {
