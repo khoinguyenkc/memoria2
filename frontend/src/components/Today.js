@@ -11,6 +11,7 @@ class Today extends Component {
     this.state = {}
   }
 
+
   getPosts = () =>  {
     //eventually, make sure it only get recent posts of user, not all posts
     // const configObject = { 
@@ -66,8 +67,8 @@ const mapStateToProps = (state) => {
   
 const mapDispatchToProps = (dispatch) => {
   return { 
-    getPosts: (specObject) => dispatch(getPosts(specObject))  
-  }
+    getPosts: (specObject) => dispatch(getPosts(specObject))
+   }
   
 };
 

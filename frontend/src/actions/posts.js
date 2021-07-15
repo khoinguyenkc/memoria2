@@ -61,13 +61,57 @@ const getPosts = function(specObject) {
           )
       }
 
-      
+
+};
+
+
+
+
+const updatePost = function(postID) {
+
+  const configObject = { 
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "timerange": "recent",
+        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+      }
+    }
+
+
+  return (dispatch) => {
+      dispatch({type: 'START_REQUESTING_TOKEN'})
+
+
+
+      fetch(`http://localhost:3000/api/posts/${postID}`, configObject).
+      then( res => res.json()).
+      then( json => {
+          console.log('update action creator called')
+          console.log(json)
+            //content of JSON.stringify(json) :
+        //   [{"id":1,"content":"my first status. the weather is so nice today","user_id":1,"created_at":"2021-06-07T20:58:19.523Z","updated_at":"2021-06-07T20:58:19.523Z"}]
+            //make sure u only use json, not json.stringify(json). loop through array
+
+
+       dispatch({type: 'UPDATE_POST', post: json })
+
+
+
+
+      //   json.forEach( post => console.log(post))
+
+      }
+        )
+    }
+
     
-    
+  
+  
 
 
 
 };
 
 
-export { getPosts };
+export { getPosts, updatePost };

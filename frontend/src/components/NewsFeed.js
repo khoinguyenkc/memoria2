@@ -11,7 +11,7 @@ class NewsFeed extends Component {
     renderPosts = () => {
       //should find out what kind of post(photo, photo series, status..) and render appropriately
       
-      return this.props.posts.map( post => < Status post={post} />)
+      return this.props.posts.map( post => < Status post={post} key={post.id} />)
     };
 
     

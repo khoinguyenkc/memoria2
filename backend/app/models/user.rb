@@ -2,6 +2,8 @@ class User < ApplicationRecord
   has_many :posts
   has_many :familymemberships
   has_many :families, through: :familymemberships
+  has_many :comments
+
 
 
   # Include default devise modules. Others available are:

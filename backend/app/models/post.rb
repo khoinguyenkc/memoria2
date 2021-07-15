@@ -1,6 +1,8 @@
 class Post < ApplicationRecord
   belongs_to :user
   has_many :pictures
+  has_many :comments
+  has_many :postlikes
   
 
   # scope :recent, -> { where( created_at: 60.days.ago.to_s .. Time.current.to_s)}
