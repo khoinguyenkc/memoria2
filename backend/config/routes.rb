@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     get 'home' => 'home#index'
     post 'auth_user' => 'authentication#authenticate_user'  
     resources :posts
+    resources :comments, only: [:create, :destroy]
+
   end
 
 end

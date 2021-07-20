@@ -5,19 +5,22 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updatePost } from '../actions/posts';
 import InstagramCarousel from './status/InstagramCarousel.js';
-import CommentContainer from './CommentContainer.js';
+import CommentContainer from './comments/CommentContainer.js';
 
 class Status extends Component {
 
   constructor(props) {
     super()
     this.state = {
-      hasPics: ( props.post.pictures && props.post.pictures.length !== 0 )
+      hasPics: ( props.post.pictures && props.post.pictures.length !== 0 ),
+      hasComments: ( props.post.comments && props.post.comments.length !== 0 )
+
     }
   }
 
   updateThisPost = () => {
     this.props.updatePost(this.props.post.id)
+
 
   }
 
@@ -42,7 +45,22 @@ class Status extends Component {
 
   renderComments = () => {
     // NEED TO CHECK COMMENTS IS NOW AVAILABLE, LIKE renderPictures, TO PREVENT ERROR
-    return ( <CommentContainer comments={this.props.post.comments} /> )
+    const hasComments =  ( !!this.props.post.comments && this.props.post.comments.length !== 0 );
+    if ( hasComments === true ) {
+      return (
+        <div>
+          <CommentContainer 
+          comments={this.props.post.comments} 
+          postId={this.props.post.id}
+          updateThisPost={this.updateThisPost} />
+        </div>
+      )
+
+    } else {
+      return null
+    }
+
+
   }
 
   componentDidMount() {
@@ -53,6 +71,8 @@ class Status extends Component {
 
   render() {
     return (
+
+      <div>  
     <div class="card h-100" >
   
         <h5 class="card-header">Featured</h5>
@@ -72,7 +92,17 @@ class Status extends Component {
         <div class="card-footer">
         <button type="button" class="btn btn-link"><small class="text-muted">Last updated 3 mins ago</small></button>        </div>
   
-    </div>    
+    </div>   
+
+    {this.renderComments()}
+
+
+
+
+
+    </div> 
+
+
   )
   }
 };

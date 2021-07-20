@@ -1,11 +1,18 @@
 class UsersController < ApplicationController
+    
+    
+    
+    
+    ########################
+    # THIS IS NOT FOR LOGIN. for creating a new user!!!!
+    #still used.
 
-
+    
     def create
         @user = User.create(user_params)
         if @user.save
             session[:user_id] = @user.id
-            #do initialize work here: create Timeline Photos album,..... etc..
+            #todo: do initialize work here: create Timeline Photos album,..... etc..
             
             #send  some data down ...
         else

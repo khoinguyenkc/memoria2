@@ -3,6 +3,13 @@ class PostsController < ApplicationController
 
     before_action :authenticate_request!  
 
+    
+
+    def create
+      
+    end
+
+
     def show
         #find post id, check that user has access to post
         @post = Post.find(params[:id]) 
