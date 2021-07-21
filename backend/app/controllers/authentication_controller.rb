@@ -2,6 +2,8 @@ class AuthenticationController < ApplicationController
   protect_from_forgery with: :null_session
   
   def authenticate_user
+    #verify correct email and password to issue a  JWT token
+
       user = User.find_for_database_authentication(email: params[:email])
       if user 
         if user.valid_password?(params[:password]) #add the if user part otherwise nfound user causes errors
