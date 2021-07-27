@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
         post_content = main_content["content"]
         post_id = main_content["post_id"]
         @comment = Comment.create(content: post_content, post_id: post_id, user_id: @current_user.id)
-        binding.pry
+        # binding.pry
 
 
         if @comment.save

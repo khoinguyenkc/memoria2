@@ -45,10 +45,34 @@
 
 }
 
-.comment {
+input.new-comment-bubble {
   padding: 10px;
+  border-radius:20px;
+  margin-left: 10px;
+
+}
+
+.comment, .new-comment-form
+{
+  padding: 10px;
+}
+
+.likebar {
+  padding:  5px 10px;
 }
 
 .borderon {
   border:1px solid red;
+}
+
+.deemphasized-text {
+  color: rgb(108, 117, 125);
+}
+
+.blue-text {
+  color: blue;
+}
+
+.red-text {
+  color: red;
 }

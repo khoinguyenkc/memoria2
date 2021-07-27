@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     post 'auth_user' => 'authentication#authenticate_user'  
     resources :posts
     resources :comments, only: [:create, :destroy]
+    resources :postlikes, only: [:create, :destroy]
+    resources :users, only: [:show]
 
   end
 

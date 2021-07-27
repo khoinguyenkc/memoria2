@@ -21,6 +21,14 @@ class UsersController < ApplicationController
 
     end
 
+    def show
+        @user = User.find(params[:id]) 
+        #should also load related content: feelingpost, photos, comments... serializer?!
+        render json: @user.to_json
+
+    end
+
+
 
     private
     def user_params

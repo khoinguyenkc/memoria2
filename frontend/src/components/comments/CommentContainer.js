@@ -11,7 +11,8 @@ export default class CommentContainer extends Component {
   }
 
   postCommentToApi = (content, postId) => {
-    const updateMethod = this.props.updateThisPost;
+    //parent component could be a Post or Photo or Album, etc...
+    const updateMethod = this.props.updateParentComponent;
     const formData = {content: content, post_id: postId}
 
     const configObject = { 
@@ -28,7 +29,7 @@ export default class CommentContainer extends Component {
         then(function(json) {  
           console.log(json)
         //update the post, must do this middle step because "This" doesn't work inside here
-          updateMethod()
+        updateMethod()
         })
 
   }

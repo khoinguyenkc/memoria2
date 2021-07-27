@@ -29,14 +29,23 @@ export default class CommentForm extends Component {
   
   render() {
     return (
-      <form onSubmit={event => this.handleSubmit(event)}>
-        <div>
-            <input
-              onChange={ event => this.handleInputChange(event)}
-              value={this.state.content}
-              id="content" name="content" type="text" />
+        <div class="d-flex new-comment-form">
+
+        <div style={{width: '40px'}} >
+          <img width="40" height="40"  src="https://images.wsj.net/im-53676?width=1280&size=1"></img>
         </div>
-      </form>
+
+        <div> 
+          <form  onSubmit={event => this.handleSubmit(event)}>
+              <input
+                class="new-comment-bubble"
+                onChange={ event => this.handleInputChange(event)}
+                value={this.state.content}
+                id="content" name="content" type="text" />
+          </form>
+        </div>
+
+        </div>
     );
   }
 

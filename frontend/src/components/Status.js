@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { updatePost } from '../actions/posts';
 import InstagramCarousel from './status/InstagramCarousel.js';
 import CommentContainer from './comments/CommentContainer.js';
+import LikeBar from './LikeBar.js';
 
 class Status extends Component {
 
@@ -19,6 +20,8 @@ class Status extends Component {
   }
 
   updateThisPost = () => {
+    //rerender this status
+    console.log("updateThisPost called")
     this.props.updatePost(this.props.post.id)
 
 
@@ -52,7 +55,7 @@ class Status extends Component {
           <CommentContainer 
           comments={this.props.post.comments} 
           postId={this.props.post.id}
-          updateThisPost={this.updateThisPost} />
+          updateParentComponent={this.updateThisPost} />
         </div>
       )
 
@@ -61,6 +64,10 @@ class Status extends Component {
     }
 
 
+  }
+
+  renderLikeBar = () => {
+    return (<LikeBar post={this.props.post} updateParentComponent={this.updateThisPost} />)
   }
 
   componentDidMount() {
@@ -75,26 +82,29 @@ class Status extends Component {
       <div>  
     <div class="card h-100" >
   
-        <h5 class="card-header">Featured</h5>
-        <img class="card-img-top" src="https://images-na.ssl-images-amazon.com/images/I/51Bfy7Uy6HL._SX355_.jpg"></img>
+        {/* <h5 class="card-header">Featured</h5> */}
+        {/* <img class="card-img-top" src="https://images-na.ssl-images-amazon.com/images/I/51Bfy7Uy6HL._SX355_.jpg"></img> */}
         <div class="card-body">
-            <h5 class="card-title">
+            <h5 class="card-title fw-bold">
               User id {this.props.post.user_id} , post id {this.props.post.id}            
               {/* <button onClick={this.updateThisPost}>
                 update post details
               </button> */}
             </h5>
+            <small class="text-muted"> {Date(this.props.post.created_at)}</small>
             <p class="card-text">{this.props.post.content}</p>
             <div>{this.renderPictures()}</div>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            {/* <a href="#" class="btn btn-primary">Go somewhere</a> */}
         </div>
         
-        <div class="card-footer">
-        <button type="button" class="btn btn-link"><small class="text-muted">Last updated 3 mins ago</small></button>        </div>
-  
-    </div>   
+        {/* <div class="card-footer">
+        <button type="button" class="btn btn-link"><small class="text-muted">Last updated 3 mins ago</small></button>        
+        </div> */}
 
-    {this.renderComments()}
+        {this.renderLikeBar()}
+        {this.renderComments()}
+
+    </div>   
 
 
 
