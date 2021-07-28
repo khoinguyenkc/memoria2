@@ -34,7 +34,7 @@ class PostlikesController < ApplicationController
         #it's guerrilla
 
         #find the postLIKE
-        binding.pry
+        # binding.pry
 
         @postlike = Postlike.where(post_id: params[:id], user_id: @current_user.id)[0]
 

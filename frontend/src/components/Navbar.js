@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 
 class Navbar extends Component {
 
+  logout = () => {
+    localStorage.setItem("userToken", "")
+  }
   render() {
     return (
         <div>
@@ -14,18 +17,18 @@ class Navbar extends Component {
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
+        {/* <li class="nav-item">
           <a href="/" class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
+        </li> */}
+        {/* <li class="nav-item">
           <a class="nav-link" href="#">Link</a>
-        </li>
+        </li> */}
       </ul>
 
-      <form class="d-flex">
+      {/* <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
         <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      </form> */}
 
       <ul class="mb-2 mb-lg-0" style={{listStyleType: 'none'}} >
       <li class="nav-item dropdown" >
@@ -33,10 +36,12 @@ class Navbar extends Component {
             Settings
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <li><a class="dropdown-item" href="/signup">Signup</a></li>
+          {/* <li><a class="dropdown-item" href="/signup">Signup</a></li> */}
+            {/* <li><a class="dropdown-item" href="/reset">Reset password</a></li>
+            <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li> */}
             <li><a class="dropdown-item" href="/login">Login</a></li>
-            <li><a class="dropdown-item" href="/reset">Reset password</a></li>
-            <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
+
+            <li><a onClick={this.logout} class="dropdown-item" href="/">Logout</a></li>
 
             <li><hr class="dropdown-divider"></hr></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>

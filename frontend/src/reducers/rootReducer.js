@@ -2,8 +2,10 @@
 import authorsReducer from './authorsReducer';
 import booksReducer from './booksReducer';
 import postsReducer from './postsReducer';
+import usersReducer from './usersReducer';
 
  const rootReducer = combineReducers({
+    users: usersReducer,
     posts: postsReducer,
     authors: authorsReducer,
     books: booksReducer

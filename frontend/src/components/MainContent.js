@@ -80,6 +80,12 @@ class MainContent extends Component {
                         // render={() => Userfront.accessToken()?  <Today /> : <LoginForm />}
                         ></Route>
                         <Route path="/past" component={Past} ></Route>
+
+                        {/* IMPORTANT
+                        IMPORTANT
+                        I NEED A PATH FOR individual user's page */}
+
+
                         {/* <Route path="/signup">
                             <SignupForm />
                         </Route> */}

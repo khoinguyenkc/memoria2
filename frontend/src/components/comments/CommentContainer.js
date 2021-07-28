@@ -7,7 +7,20 @@ export default class CommentContainer extends Component {
 
   generateComments = () => {
     // map over your movieData array and return an array of the correct JSX
-    return this.props.comments.map( function(comment) { return <CommentDisplay comment={comment} />})
+    const usersArray = this.props.users
+    return this.props.comments.map( function(comment) { 
+      const elem = usersArray.filter( (elem) => { return elem.id === comment.user_id});
+      console.log(elem)
+      const username =  elem[0].fullname;
+      const avatar = elem[0].avatar
+
+      return (
+
+    <CommentDisplay 
+    comment={comment}
+    username={username}
+    avatar={avatar}
+     />)})
   }
 
   postCommentToApi = (content, postId) => {

@@ -6,7 +6,7 @@ export default function usersReducer(state = { users: [], requesting: false }, a
         case "START_REQUESTING_USERS":
           return {
             ...state, 
-            users: [...state.posts], 
+            users: [...state.users], 
             requesting: true 
           }
   

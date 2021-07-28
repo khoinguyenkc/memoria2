@@ -3,6 +3,7 @@ import NewsFeed from './NewsFeed';
 import TodayPastSwitcher from './TodayPastSwitcher';
 import { connect } from 'react-redux';
 import { getPosts } from '../actions/posts';
+import { getUsers } from '../actions/users';
 
 // import { addPost } from '../actions/posts'
 class Today extends Component {
@@ -31,9 +32,18 @@ class Today extends Component {
     //   // this.setState({postsReceived: JSON.stringify(json)})
     // }
     //   )
+    this.props.getUsers()
+
     this.props.getPosts({type: "recent"})
 
+  }
 
+  renderContentConditionally = () => {
+    if ( localStorage.getItem("userToken") !== "") {
+      return <div>user is logged in</div>
+    } else {
+      return  <div>You are logged out. Please <a href="/login">log in</a></div>
+    }
   }
 
 
@@ -44,14 +54,14 @@ class Today extends Component {
             <h1>Today - NewsFeed feature</h1>
             <div>
               <button onClick={this.getPosts}>
-                Get posts
+                See newsfeed
               </button>
               {/* <p>Posts received: {this.props.postsReceived}</p> */}
 
               <p>current user token: {localStorage.getItem("userToken")}</p>
             </div>
-
-            <NewsFeed posts={this.props.postsReceived}/>
+            {this.renderContentConditionally()}
+            <NewsFeed posts={this.props.postsReceived} users={this.props.usersReceived}/>
             {/* we're gonna pass data into newsfeed and let it do its thing. newsfeed is kinda of a container component*/}
         </div>
     )
@@ -61,13 +71,15 @@ class Today extends Component {
 
 const mapStateToProps = (state) => {
 
-  return { postsReceived : state.posts.posts }
+  return { postsReceived : state.posts.posts,
+    usersReceived: state.users.users }
 }
 
   
 const mapDispatchToProps = (dispatch) => {
   return { 
-    getPosts: (specObject) => dispatch(getPosts(specObject))
+    getPosts: (specObject) => dispatch(getPosts(specObject)),
+    getUsers: () => dispatch(getUsers())
    }
   
 };

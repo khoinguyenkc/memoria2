@@ -44,14 +44,20 @@ import { addToken } from '../../actions/tokens';
     }
 
 
-
+    renderRedirect = () => {
+        if ( localStorage.getItem("userToken") !== "" ) {
+            return <p>You are logged in. Go to <a href="/">homepage</a></p>
+        } else {
+            return null
+        }
+    }
 
     render() {
         return (
           <div>
             <h3>Login component</h3>
             <p>current user token: {localStorage.getItem("userToken")}</p>
-
+            {this.renderRedirect()}
             <LoginForm login={this.handleLogin} />
 
         </div>

@@ -55,19 +55,29 @@ class Status extends Component {
           <CommentContainer 
           comments={this.props.post.comments} 
           postId={this.props.post.id}
+          users={this.props.users}
           updateParentComponent={this.updateThisPost} />
         </div>
       )
 
     } else {
-      return null
+      return  <div>   
+            <CommentContainer 
+      comments={[]} 
+      postId={this.props.post.id}
+      updateParentComponent={this.updateThisPost} />
+    </div>
+
     }
 
 
   }
 
   renderLikeBar = () => {
-    return (<LikeBar post={this.props.post} updateParentComponent={this.updateThisPost} />)
+    return (<LikeBar post={this.props.post} 
+      updateParentComponent={this.updateThisPost} 
+      comments={this.props.post.comments} 
+      />)
   }
 
   componentDidMount() {
@@ -75,6 +85,12 @@ class Status extends Component {
 
   }
 
+  // renderUserName = () => {
+  //   // from id, get user's name from this.props.users
+  //   const elem = this.props.users.filter( (elem) => { return elem.id === this.props.post.user_id});
+  //   console.log(elem)
+  //   return elem.fullname;
+  // }
 
   render() {
     return (
@@ -85,12 +101,30 @@ class Status extends Component {
         {/* <h5 class="card-header">Featured</h5> */}
         {/* <img class="card-img-top" src="https://images-na.ssl-images-amazon.com/images/I/51Bfy7Uy6HL._SX355_.jpg"></img> */}
         <div class="card-body">
+
+
+          <div class="d-flex">
+          <div style={{width: '40px'}} >
+      <img width="40" height="40"  src={this.props.avatar}></img>
+    </div>
+
+            <div class="post-author">
             <h5 class="card-title fw-bold">
-              User id {this.props.post.user_id} , post id {this.props.post.id}            
+              {/* User id {this.props.post.user_id} ,  */}
+              {this.props.username} 
+              {/* post id {this.props.post.id}             */}
               {/* <button onClick={this.updateThisPost}>
                 update post details
               </button> */}
             </h5>
+            </div>
+
+            </div> 
+
+
+
+
+
             <small class="text-muted"> {Date(this.props.post.created_at)}</small>
             <p class="card-text">{this.props.post.content}</p>
             <div>{this.renderPictures()}</div>

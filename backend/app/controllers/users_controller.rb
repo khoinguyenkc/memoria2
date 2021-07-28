@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
-    
+    protect_from_forgery with: :null_session
+
+    before_action :authenticate_request!  
+
     
     
     
@@ -27,6 +30,14 @@ class UsersController < ApplicationController
         render json: @user.to_json
 
     end
+
+    def index
+        #for now: find FAMILY and return users in that family, later will take different specs
+        @family = @current_user.family
+        render json: @family.to_json
+
+    end
+
 
 
 

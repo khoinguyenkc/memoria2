@@ -11,7 +11,21 @@ class NewsFeed extends Component {
     renderPosts = () => {
       //should find out what kind of post(photo, photo series, status..) and render appropriately
       
-      return this.props.posts.map( post => < Status post={post} key={post.id} />)
+      return this.props.posts.map( post => { 
+        //this.props.users is currently undefined... why? 
+        console.log(this.props.users)       
+        const elem = this.props.users.filter( (elem) => { return elem.id === post.user_id});
+        console.log(elem)
+        const username =  elem[0].fullname;
+        const avatar = elem[0].avatar
+        console.log(username)
+        // const username = 'dummy username';
+        return < Status 
+        username={username} 
+        avatar={avatar}
+        users={this.props.users}
+        post={post} 
+        key={post.id} />})
     };
 
     

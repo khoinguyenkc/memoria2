@@ -45,6 +45,11 @@
 
 }
 
+.post-author {
+  padding: 5px;
+
+}
+
 input.new-comment-bubble {
   padding: 10px;
   border-radius:20px;

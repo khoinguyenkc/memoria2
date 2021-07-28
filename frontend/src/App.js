@@ -15,9 +15,11 @@ class App extends Component {
       <div className="App">
       <Router>
         <Navbar/>
+
+        
         
         <Route path="/" component={MainContent} ></Route>
-        {/* <Route path="/home" component={Home} ></Route> */}
+        {/* <Route path="/posts/:postid" component={PostUniView} ></Route> */}
         <Route path="/testcomponent" component={TestComponent} ></Route>
 
 

@@ -35,11 +35,13 @@ const CommentDisplay = props => (
   <div class="d-flex comment">
     
     <div style={{width: '40px'}} >
-      <img width="40" height="40"  src="https://images.wsj.net/im-53676?width=1280&size=1"></img>
+      <img width="40" height="40"  
+      src={props.avatar}
+      ></img>
     </div>
 
     <div class="bubble">
-    <div class="fs-6 fw-bold " >User id {props.comment.user_id}</div>
+    <div class="fs-6 fw-bold " >{props.username}</div>
     <div >{props.comment.content}</div>
     </div>
 

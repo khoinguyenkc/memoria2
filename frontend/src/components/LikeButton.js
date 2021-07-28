@@ -11,18 +11,20 @@ export default class LikeButton extends Component {
       }
     
     handleClick = () => {
-
+        this.props.submitLike()
+        
         // either create a like or destroy the like, depends on state
-        if (this.state.postIsLiked === false) {
-            this.setState({ postIsLiked: true })
-                    this.props.submitLike()
-        }   else {
-            this.props.unlike()
-        }
+        // if (this.state.postIsLiked === false) {
+        //     this.setState({ postIsLiked: true })
+        //             this.props.submitLike()
+        // }   else {
+        //     this.props.unlike()
+        // }
 
         }
 
     renderFormatting = () => {
+        // class={`${this.renderFormatting()}`} 
         const phrasecss = this.state.postIsLiked ? 'blue-text' : 'red-text';
         console.log(phrasecss)
         return phrasecss
@@ -31,7 +33,7 @@ export default class LikeButton extends Component {
     render() {
         return (
 
-            <a class={`${this.renderFormatting()}`} onClick={this.handleClick}><i class="glyphicon glyphicon-thumbs-up"></i> Like {this.state.postIsLiked}</a>
+            <a onClick={this.handleClick}><i class="glyphicon glyphicon-thumbs-up"></i> Like {this.state.postIsLiked}</a>
         )
     }
 

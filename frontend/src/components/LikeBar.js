@@ -3,6 +3,15 @@ import LikeButton from './LikeButton';
 
 // import { addPost } from '../actions/posts'
 export default class LikeBar extends Component {
+    renderCommentCount = () => {
+        if (this.props.comments) {
+            const commentCount = this.props.post.comments.length
+
+            return (
+                <span>{commentCount}</span>
+            )
+        }
+    }
     renderReactions = () => {
 
         if ( !!this.props.post.postlikes === false) { return null }
@@ -118,7 +127,7 @@ export default class LikeBar extends Component {
 
                 <div class="deemphasized-text d-flex likebar ">
                     <div  style={{width: '60%'}}> {this.renderReactions()} </div>
-                    <div  class="  text-end" style={{width: '40%'}}>4 comments</div>
+                    <div  class="  text-end" style={{width: '40%'}}>{this.renderCommentCount()} comments</div>
                 </div>
 
 
