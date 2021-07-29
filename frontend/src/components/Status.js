@@ -124,8 +124,8 @@ class Status extends Component {
 
 
 
-
-            <small class="text-muted"> {Date(this.props.post.created_at)}</small>
+            <a href={`/posts/${this.props.post.id}`}><small class="text-muted">  {Date(this.props.post.created_at)} </small> 
+ </a>
             <p class="card-text">{this.props.post.content}</p>
             <div>{this.renderPictures()}</div>
             {/* <a href="#" class="btn btn-primary">Go somewhere</a> */}

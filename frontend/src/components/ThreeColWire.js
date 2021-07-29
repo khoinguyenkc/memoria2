@@ -3,7 +3,6 @@ import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
 import Today from './Today';
 import Past from './Past';
 import Userfront from "@userfront/react";
-import Login from './auth/Login';
 
 // ---------------------------------------------------------------------------------
 // ------------USERFRONT STUFF HERE. ACTUAL maincontent COMPONENT BELOW-------------
@@ -59,7 +58,7 @@ import Login from './auth/Login';
 // ---------------------------------------------------------------------------------
 
 
-class MainContent extends Component {
+class ThreeColWire extends Component {
     render() {
       return (
           <div class="container-fluid">
@@ -70,16 +69,17 @@ class MainContent extends Component {
                 </div>
 
                 <div class="col-sm-6">
-                <h1>MainContent Component</h1>
+                <small>ThreeColWire Component</small>
 
-                    <Router>
+                {this.props.mainContent}
+                    {/* <Router>
                         {/* later i want exact path / to load conditionally: today newsfeed or login, depends on login status  */}
-                        <Route exact path="/" 
-                        render={() =>   <Today />}
+                        {/* <Route exact path="/" 
+                        render={() =>   <Today />} */}
 
-                        // render={() => Userfront.accessToken()?  <Today /> : <LoginForm />}
-                        ></Route>
-                        <Route path="/past" component={Past} ></Route>
+                        {/* // render={() => Userfront.accessToken()?  <Today /> : <LoginForm />} */}
+                        {/* ></Route>
+                        <Route path="/past" component={Past} ></Route> */}
 
                         {/* IMPORTANT
                         IMPORTANT
@@ -90,9 +90,6 @@ class MainContent extends Component {
                             <SignupForm />
                         </Route> */}
 
-                        <Route path="/login">
-                            <Login />
-                        </Route>
                         {/* <Route path="/reset">
                             <PasswordResetForm />
                         </Route> */}
@@ -100,7 +97,7 @@ class MainContent extends Component {
                             <Dashboard />
                         </Route> */}
 
-                    </Router>
+                    {/* </Router> */}
 
                 </div>
 
@@ -118,4 +115,4 @@ class MainContent extends Component {
     }
 }
 
-export default MainContent;
+export default ThreeColWire;

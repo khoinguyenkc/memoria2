@@ -32,7 +32,7 @@ class NewsFeed extends Component {
     render() {
       return (
           <div>
-              <h1>NewsFeed Component</h1>
+              <small>NewsFeed Component</small>
               {this.renderPosts()}
           </div>
       )

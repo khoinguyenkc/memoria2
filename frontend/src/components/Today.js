@@ -4,7 +4,7 @@ import TodayPastSwitcher from './TodayPastSwitcher';
 import { connect } from 'react-redux';
 import { getPosts } from '../actions/posts';
 import { getUsers } from '../actions/users';
-
+import ThreeColWire from './ThreeColWire';
 // import { addPost } from '../actions/posts'
 class Today extends Component {
   constructor(props) {
@@ -46,24 +46,49 @@ class Today extends Component {
     }
   }
 
+  todayMainContent = () => {
+    return (
+      <div>
+      <TodayPastSwitcher/>
+      <div>
+        <button onClick={this.getPosts}>
+          See newsfeed
+        </button>
+        {/* <p>Posts received: {this.props.postsReceived}</p> */}
+
+        <p>current user token: {localStorage.getItem("userToken")}</p>
+      </div>
+      {this.renderContentConditionally()}
+      <NewsFeed posts={this.props.postsReceived} users={this.props.usersReceived}/>
+      {/* we're gonna pass data into newsfeed and let it do its thing. newsfeed is kinda of a container component*/}
+  </div>
+
+    )
+
+  }
+
 
   render() {
     return (
-        <div>
-            <TodayPastSwitcher/>
-            <h1>Today - NewsFeed feature</h1>
-            <div>
-              <button onClick={this.getPosts}>
-                See newsfeed
-              </button>
-              {/* <p>Posts received: {this.props.postsReceived}</p> */}
-
-              <p>current user token: {localStorage.getItem("userToken")}</p>
-            </div>
-            {this.renderContentConditionally()}
-            <NewsFeed posts={this.props.postsReceived} users={this.props.usersReceived}/>
-            {/* we're gonna pass data into newsfeed and let it do its thing. newsfeed is kinda of a container component*/}
+      <div>
+        <h1>Today Component</h1>
+        <ThreeColWire mainContent={this.todayMainContent()} />
         </div>
+        // <div>
+        //     <TodayPastSwitcher/>
+        //     <h1>Today - NewsFeed feature</h1>
+        //     <div>
+        //       <button onClick={this.getPosts}>
+        //         See newsfeed
+        //       </button>
+        //       {/* <p>Posts received: {this.props.postsReceived}</p> */}
+
+        //       <p>current user token: {localStorage.getItem("userToken")}</p>
+        //     </div>
+        //     {this.renderContentConditionally()}
+        //     <NewsFeed posts={this.props.postsReceived} users={this.props.usersReceived}/>
+        //     {/* we're gonna pass data into newsfeed and let it do its thing. newsfeed is kinda of a container component*/}
+        // </div>
     )
   }
 };

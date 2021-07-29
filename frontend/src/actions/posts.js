@@ -5,7 +5,7 @@ const getPosts = function(specObject) {
         headers: {
           "Content-Type": "application/json",
           "timerange": "recent",
-          Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+          Authorization: `Bearer ${localStorage.getItem("userToken")}`
         }
       }
 
@@ -65,6 +65,44 @@ const getPosts = function(specObject) {
 };
 
 
+const getOnePost = function(postId) {
+
+  const configObject = { 
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("userToken")}`
+      }
+    }
+
+
+
+    //need to save it to redux central state
+    
+
+
+  return (dispatch) => {
+      dispatch({type: 'START_REQUESTING_TOKEN'})
+
+
+      fetch(`http://localhost:3000/api/posts/${postId}`, configObject).
+      then( res => res.json()).
+      then( json => {
+          console.log(json)
+        dispatch({type: 'ADD_POST', post: json })
+
+
+
+
+
+      }
+        )
+    }
+
+
+};
+
+
 
 
 const updatePost = function(postID) {
@@ -114,4 +152,4 @@ const updatePost = function(postID) {
 };
 
 
-export { getPosts, updatePost };
+export { getPosts, getOnePost, updatePost };

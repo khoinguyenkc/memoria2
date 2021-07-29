@@ -12,10 +12,17 @@ class PostsController < ApplicationController
 
     def show
         #find post id, check that user has access to post
+
         @post = Post.find(params[:id]) 
+
         #should also load related content: feelingpost, photos, comments... serializer?!
-        render json: @post.to_json(:include => [ :pictures, :comments, :postlikes])
-    
+        if @post
+          render json: @post.to_json(:include => [ :pictures, :comments, :postlikes])
+
+      else
+          render json: {message: 'post not found'}
+      end
+
       end
 
       def index
